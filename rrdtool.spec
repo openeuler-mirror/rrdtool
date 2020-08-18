@@ -1,6 +1,6 @@
 Name:             rrdtool
 Version:          1.7.0
-Release:          18
+Release:          19
 Summary:          RA tool for data logging and analysis
 License:          GPLv2+ with exceptions
 URL:              http://oss.oetiker.ch/rrdtool/
