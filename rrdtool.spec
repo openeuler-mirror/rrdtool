@@ -1,6 +1,6 @@
 Name:             rrdtool
 Version:          1.7.0
-Release:          18
+Release:          19
 Summary:          RA tool for data logging and analysis
 License:          GPLv2+ with exceptions
 URL:              http://oss.oetiker.ch/rrdtool/
@@ -17,7 +17,7 @@ BuildRequires:    gcc-c++ openssl-devel freetype-devel libpng-devel zlib-devel
 BuildRequires:    intltool >= 0.35.0 cairo-devel >= 1.4.6, pango-devel >= 1.17
 BuildRequires:    libtool groff gettext libxml2-devel systemd automake autoconf
 BuildRequires:    perl-ExtUtils-MakeMaker perl-generators perl-Pod-Html perl-devel
-BuildRequires:    libdbi-devel
+BuildRequires:    libdbi-devel chrpath
 Requires:         dejavu-sans-mono-fonts
 
 %description
@@ -149,6 +149,8 @@ cd -
 
 %find_lang %{name}
 
+chrpath -d %{buildroot}/%{python3_sitearch}/*.so
+
 %check
 
 %post
@@ -213,6 +215,9 @@ cd -
 %{_mandir}/man3/*
 
 %changelog
+* Thu Sep 09 2021 wangyue <wangyue92@huawei.com> - 1.7.0-19
+- fix rpath problem
+
 * Mon Dec 23 2019 wangzhishun <wangzhishun1@huawei.com> - 1.7.0-18
 - Package init
 
