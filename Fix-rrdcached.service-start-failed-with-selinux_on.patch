@@ -1,0 +1,12 @@
+diff --git a/etc/rrdcached.service.in b/etc/rrdcached.service.in
+index 3b6f309..2942a13 100644
+--- a/etc/rrdcached.service.in
++++ b/etc/rrdcached.service.in
+@@ -6,6 +6,7 @@
+ [Unit]
+ Description=Data caching daemon for rrdtool
+ Documentation=man:rrdcached(1)
++Requires=rrdcached.socket
+ 
+ [Service]
+ # If you enable socket-activable rrdcached.socket,

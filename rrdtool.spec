@@ -1,6 +1,6 @@
 Name:             rrdtool
 Version:          1.7.0
-Release:          20
+Release:          21
 Summary:          RA tool for data logging and analysis
 License:          GPLv2+ with exceptions
 URL:              http://oss.oetiker.ch/rrdtool/
@@ -9,6 +9,7 @@ Source1:          php4-r1190.tar.gz
 Patch0001:        rrdtool-1.6.0-ruby-2-fix.patch
 Patch0002:        rrdtool-1.4.8-php-ppc-fix.patch
 Patch0003:        rrdtool-1.7.0-fix-configure-parameters.patch
+Patch0004:        Fix-rrdcached.service-start-failed-with-selinux_on.patch
 
 Requires(post):   systemd
 Requires(preun):  systemd
@@ -215,6 +216,9 @@ chrpath -d %{buildroot}/%{python3_sitearch}/*.so
 %{_mandir}/man3/*
 
 %changelog
+* Thu Sep 09 2021 wangyue <wangyue92@huawei.com> - 1.7.0-21
+- fix rrdcached.service start failed when selinux enforcing
+
 * Thu Sep 09 2021 wangyue <wangyue92@huawei.com> - 1.7.0-20
 - fix rpath problem
 
