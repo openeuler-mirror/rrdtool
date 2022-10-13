@@ -1,24 +1,23 @@
 Name:             rrdtool
-Version:          1.7.0
-Release:          19
+Version:          1.8.0
+Release:          1
 Summary:          RA tool for data logging and analysis
 License:          GPLv2+ with exceptions
 URL:              http://oss.oetiker.ch/rrdtool/
-Source0:          http://oss.oetiker.ch/%{name}/pub/%{name}-%{version}.tar.gz
+Source0:          https://github.com/oetiker/rrdtool-1.x/releases/download/v%{version}/%{name}-%{version}.tar.gz
 Source1:          php4-r1190.tar.gz
-Patch0001:        rrdtool-1.6.0-ruby-2-fix.patch
-Patch0002:        rrdtool-1.4.8-php-ppc-fix.patch
-Patch0003:        rrdtool-1.7.0-fix-configure-parameters.patch
+Patch0001:        rrdtool-1.4.8-php-ppc-fix.patch
+Patch0002:        rrdtool-1.6.0-ruby-2-fix.patch
 
-Requires(post):   systemd
-Requires(preun):  systemd
-Requires(postun): systemd
-BuildRequires:    gcc-c++ openssl-devel freetype-devel libpng-devel zlib-devel
+BuildRequires:    make gcc-c++ openssl-devel freetype-devel libpng-devel zlib-devel
 BuildRequires:    intltool >= 0.35.0 cairo-devel >= 1.4.6, pango-devel >= 1.17
-BuildRequires:    libtool groff gettext libxml2-devel systemd automake autoconf
+BuildRequires:    libtool groff gettext libxml2-devel systemd
 BuildRequires:    perl-ExtUtils-MakeMaker perl-generators perl-Pod-Html perl-devel
 BuildRequires:    libdbi-devel chrpath
 Requires:         dejavu-sans-mono-fonts
+Requires(post):   systemd
+Requires(preun):  systemd
+Requires(postun): systemd
 
 %description
 A tool to log and analyze data gathered from all kinds of data sources.
@@ -54,13 +53,13 @@ Obsoletes: perl-%{name} < %{version}-%{release}
 %description perl
 The Perl RRDtool bindings module.
 
-%{!?rrd_python3_version: %global rrd_python3_version %(%{__python3} -c 'import sys; print(sys.version.split(" ")[0])' || echo "3.14")}
 
 %package -n python3-rrdtool
+%{?python_provide:%python_provide python3-rrdtool}
 Summary:       Python RRDtool bindings module
 BuildRequires: python3-devel python3-setuptools
-Requires:      python3 >= %{rrd_python3_version} %{name} = %{version}-%{release}
-%{?python_provide:%python_provide python3-rrdtool}
+%{?__python3:Requires: %{__python3}}
+Requires:      %{name} = %{version}-%{release}
 
 %description -n python3-rrdtool
 Python RRDtool bindings module.
@@ -215,9 +214,11 @@ chrpath -d %{buildroot}/%{python3_sitearch}/*.so
 %{_mandir}/man3/*
 
 %changelog
+* Wed Nov 09 2022 chenzirui <ziruichen@126.com> - 1.8.0-1
+- version update
+
 * Thu Sep 09 2021 wangyue <wangyue92@huawei.com> - 1.7.0-19
 - fix rpath problem
 
 * Mon Dec 23 2019 wangzhishun <wangzhishun1@huawei.com> - 1.7.0-18
 - Package init
-
