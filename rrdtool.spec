@@ -1,10 +1,10 @@
 Name:             rrdtool
 Version:          1.7.0
-Release:          19
+Release:          20
 Summary:          RA tool for data logging and analysis
 License:          GPLv2+ with exceptions
 URL:              http://oss.oetiker.ch/rrdtool/
-Source0:          http://oss.oetiker.ch/%{name}/pub/%{name}-%{version}.tar.gz
+Source0:          https://github.com/oetiker/%{name}-1.x/releases/download/v%{version}/%{name}-%{version}.tar.gz
 Source1:          php4-r1190.tar.gz
 Patch0001:        rrdtool-1.6.0-ruby-2-fix.patch
 Patch0002:        rrdtool-1.4.8-php-ppc-fix.patch
@@ -215,6 +215,9 @@ chrpath -d %{buildroot}/%{python3_sitearch}/*.so
 %{_mandir}/man3/*
 
 %changelog
+* Mon Nov 14 2022 yaoxin <yaoxin30@h-partners.com> - 1.7.0-20
+- Modify invalid Source
+
 * Thu Sep 09 2021 wangyue <wangyue92@huawei.com> - 1.7.0-19
 - fix rpath problem
 
